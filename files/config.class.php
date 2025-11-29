@@ -35,7 +35,7 @@ class config
 
 	}
 
-        public static function getInstance()
+        public static function getInstance(): self
         {
                 if( !isset(self::$instance) )
                         self::$instance = new config();
@@ -57,11 +57,11 @@ class config
 	* @param $attr  Optional attributes for this symbol.
 	*/
 
-	public function add_symbol($latex, $mml, $char, array $attr = array())
-	{
-		$this->element[$latex] = array('m' =>  $mml, 'args' => 0, 'char' => $char, 'attr' => $attr);
-	
-	}
+ public function add_symbol(string $latex, string $mml, string $char, array $attr = array()): void
+ {
+     $this->element[$latex] = array('m' =>  $mml, 'args' => 0, 'char' => $char, 'attr' => $attr);
+    
+ }
 
 	/**
 	* The following method can be use to define LaTeX commands.
@@ -76,19 +76,19 @@ class config
 	* @param $args  The number of argument for the command.
 	*/
 
-	public function add_command($latex, $mml, $args, array $attr = array())
-	{
-		$this->element[$latex] = array('m' => $mml, 'args' => $args, 'attr' => $attr);
-	}
+ public function add_command(string $latex, string $mml, int $args, array $attr = array()): void
+ {
+     $this->element[$latex] = array('m' => $mml, 'args' => $args, 'attr' => $attr);
+ }
 
 	/**
 	* 
 	*/
 
-	public function add_operator($op)
-	{
-		$this->operators[$op] = TRUE;
-	}
+ public function add_operator(string $op): void
+ {
+     $this->operators[$op] = TRUE;
+ }
 
 	/**
 	* This method returns all LaTeX entities defined by 
@@ -97,10 +97,10 @@ class config
 	* @return $this->element
 	*/
 
-	public function getElements()
-	{
-		return $this->element;
-	}
+ public function getElements(): array
+ {
+     return $this->element;
+ }
 
 	/**
 	* This method returns all LaTeX operators defined by 
@@ -109,10 +109,10 @@ class config
 	* @return $this->operators
 	*/
 
-	public function getOperators()
-	{
-		return $this->operators;
-	}
+ public function getOperators(): array
+ {
+     return $this->operators;
+ }
 
 
 }

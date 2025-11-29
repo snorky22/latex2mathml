@@ -1,7 +1,7 @@
 <?php
 
 // Serve the document as an xml file.
-header("Content-type: text/html; charset=utf-8"); 
+header("Content-type: text/html; charset=utf-8");
 
 // These files are required to get the script fully functional.
 $base = dirname(__DIR__).'/files/';

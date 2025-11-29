@@ -20,7 +20,7 @@ class commands
 	}
 
 
-        public static function getInstance()
+        public static function getInstance(): self
         {
                 if( !isset(self::$instance) )
                         self::$instance = new commands();
@@ -28,10 +28,10 @@ class commands
                 return self::$instance;
         }
 
-	public function newCommand($name, $num, $def)
-	{
-		$this->commands[$name] = $num.$def;
-	}
+    public function newCommand(string $name, int $num, string $def): void
+    {
+        $this->commands[$name] = $num.$def;
+    }
 
 	/**
 	* Get the name of a LaTeX command.
@@ -39,15 +39,15 @@ class commands
 	* @return substr($expr, 1, $p) The name of the command.
 	*/
 	
-	public function getCommand(&$expr)
-	{
-		$pos = strpos($expr, '{');
-		if ($pos === false) {
-			return substr($expr, 1); // fallback: take the rest of the string
-		}
-		$p = $pos - 1;
-		return substr($expr, 1, $p);
-	}
+ public function getCommand(string &$expr): string
+ {
+     $pos = strpos($expr, '{');
+     if ($pos === false) {
+         return substr($expr, 1); // fallback: take the rest of the string
+     }
+     $p = $pos - 1;
+     return substr($expr, 1, $p);
+ }
 
 
 
@@ -58,8 +58,8 @@ class commands
 	* @return $args Array containing the arguments.
 	*/
 
-	public function _getArgs($command, &$expr, $pcmd=0)
-	{
+ public function _getArgs(string $command, string &$expr, int $pcmd=0): array
+ {
 
 		$elements = config::getInstance()->getElements();
 		$l2xml    = LaTeX2Xml::getInstance();
@@ -85,9 +85,9 @@ class commands
 		 	$err =  substr($expr, 0, $off);
 			$l2xml->_setTag('merror', '['.$err.'?]');
 			$expr = substr($expr, $off);
-			return array( $expr);
-		}
-		else return array($expr);
+            return array( $expr);
+        }
+        else return array($expr);
 
 
 		$args = array();
@@ -96,7 +96,7 @@ class commands
 		{
 			$l2xml->_setTag($elements[$command]['m'], $elements[$command]['char'], $elements[$command]['attr']);
 
-			$args = array(substr($expr, 3+strlen($command)));
+   $args = array(substr($expr, 3+strlen($command)));
 		}
 		else
 		{
@@ -126,8 +126,8 @@ class commands
 
 
 		}
-			return $args;
-	}
+            return $args;
+    }
 
 
 
@@ -138,8 +138,8 @@ class commands
 	* @return $math The replaced content.
 	*/
 
-	public function replaceAll($math)
-	{
+ public function replaceAll(string $math): string
+ {
 		
 		$math = str_replace('\\left\{', '\\left{', $math);
 		$math = str_replace('\\right\}', '\\right}', $math);
@@ -172,8 +172,8 @@ class commands
 		return ' '.$math;
 	}
 
-	private function _parseCmd($expr)
-	{
+ private function _parseCmd(string $expr): void
+ {
 		// Guard empty strings
 		if ($expr === '' || $expr === null) return;
 		// Get the first and second char.
@@ -199,8 +199,8 @@ class commands
 
 	}
 
-	private function _replaceCmd($command,&$expr)
-	{
+ private function _replaceCmd(string $command, string &$expr): void
+ {
 
 		$args = $this->_getArgs($command, $expr, 1);
 

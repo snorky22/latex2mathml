@@ -1,6 +1,8 @@
 <?php
 namespace Latex2MathML;
 
+use DOMDocument;
+
 /**
 * @brief LaTeX2MathML parser
 * @author Jeremy Oden
@@ -60,7 +62,7 @@ class LaTeX2Xml
 	* This method is used to create a singleton.
 	*/
 
-	public static function getInstance()
+ public static function getInstance(): self
         {
                 if( !isset(self::$instance) )
                         self::$instance = new LaTeX2Xml();
@@ -72,10 +74,10 @@ class LaTeX2Xml
 
 /*** PUBLIC METHODS ***/
 
-	public function getSymbols()
-	{
-		return (array)$this->symbol;
-	}
+ public function getSymbols(): array
+ {
+     return (array)$this->symbol;
+ }
 
 	/**
 	* This method is used to create the mathml element of the dom document.
@@ -83,12 +85,12 @@ class LaTeX2Xml
 	* @param $math The LaTeX math formula to convert
 	*/
 
-	public function parseMath($math)
-	{
+ public function parseMath(string $math): void
+ {
 		
         $this->tag = array();
 
-        $this->dom = new DOMDocument();
+        $this->dom = new DOMDocument('1.0', 'UTF-8');
 
         $this->dom->encoding = 'utf-8';
         $this->dom->standalone = false;
@@ -132,7 +134,7 @@ class LaTeX2Xml
 	* @param $expr Expression to parse
 	*/
 
- private function _parseExpr(&$expr)
+ private function _parseExpr(string &$expr): void
  {
      // Guard empty expression
      if ($expr === '' || $expr === null) {
@@ -194,8 +196,8 @@ class LaTeX2Xml
 	* @return $env The name of the current environment.
 	*/
 
-	private function _getEnv($expr)
-	{
+ private function _getEnv(string $expr): string
+ {
 		$expr = substr($expr, 6);
 		$p = strpos($expr, '}');
 		$env = substr($expr, 1, $p-1);
@@ -211,10 +213,10 @@ class LaTeX2Xml
 	* @return The corresponding mathml tag.
 	*/
 
-	private function _getTag($command)
-	{
-		return $this->element[$command]['m'];
-	}
+ private function _getTag(string $command): string
+ {
+     return $this->element[$command]['m'];
+ }
 
 
 	/**
@@ -223,10 +225,10 @@ class LaTeX2Xml
 	* @return The corresponding mathml attribute.
 	*/
 
-	private function _getAttr($command)
-	{
-		return $this->element[$command]['attr'];
-	}
+ private function _getAttr(string $command): array
+ {
+     return $this->element[$command]['attr'];
+ }
 
 	/**
 	* Create a new mathml node.
@@ -235,8 +237,8 @@ class LaTeX2Xml
 	* @param $attr Attributes (optional)
 	*/
 
-	public function _setTag($tag, $content, array $attr = array())
-	{
+ public function _setTag(string $tag, string $content, array $attr = array()): void
+ {
 
 		$c = count($this->tag)-1;
 		$elt = $this->dom->createElement($tag, $content);
@@ -255,10 +257,10 @@ class LaTeX2Xml
 	* @param $expr
 	*/
 
- private function _upExpr(&$expr, $l=1)
+ private function _upExpr(string &$expr, int $l=1): void
  {
- 		$this->prev_char = (strlen($expr) > 0) ? $expr[0] : '';
- 		$expr = substr((string)$expr, $l);
+         $this->prev_char = (strlen($expr) > 0) ? $expr[0] : '';
+         $expr = substr((string)$expr, $l);
  }
 
 	/**
@@ -267,9 +269,9 @@ class LaTeX2Xml
 	* @param $attr Optinal attributes.
 	*/
 
-	private function _openTag($tag, array $attr = array())
-	{		
-		$elt = $this->dom->createElement($tag);
+ private function _openTag(string $tag, array $attr = array()): void
+ {     
+     $elt = $this->dom->createElement($tag);
 
 		if(count($attr) > 0)
 			foreach($attr as $a => $v)
@@ -282,8 +284,8 @@ class LaTeX2Xml
 	* Close a previously opened tag.
 	*/
 
-	private function _closeTag()
-	{
+ private function _closeTag(): void
+ {
 
 		$cb = count($this->tag)-1;
 		$c = $cb-1;
@@ -307,8 +309,8 @@ class LaTeX2Xml
 	* @param $expr
 	*/	
 
-	private function _parseFormula($command, &$expr)
-	{
+ private function _parseFormula(string $command, string &$expr): void
+ {
 
 		if(substr($command, 0, 4) == 'left' && !preg_match('![a-z]!i',  $expr[5]))
 		{
@@ -445,8 +447,8 @@ class LaTeX2Xml
 
 	}
 
-	private function _getLRContent($expr)
-	{
+ private function _getLRContent(string $expr): array
+ {
 		$lleft = strlen('\\left');
 		$lright= strlen('\\right');
 
@@ -471,8 +473,8 @@ class LaTeX2Xml
 	}
 
 
-	private function _getEnvContent($expr,$env)
-	{
+ private function _getEnvContent(string $expr, string $env): string
+ {
 		$str = substr($expr, strlen('\\begin{'.$env.'}'));
 
 
@@ -495,8 +497,8 @@ class LaTeX2Xml
 	* @param $content Environment's content
 	*/
 
-	private function _parseEnv($env, $content, $delim = array())
-	{
+ private function _parseEnv(string $env, string $content, array $delim = array()): void
+ {
 		if($env == 'matrix') $env = 'omatrix';
 
 		if(substr($env,1) == 'matrix')
@@ -588,7 +590,7 @@ class LaTeX2Xml
 	* @param $char The number to parse.
 	*/
 
- private function _parsenb(&$expr, &$char)
+ private function _parsenb(string &$expr, string &$char): void
  {
  		$this->_upExpr($expr);
 
@@ -609,8 +611,8 @@ class LaTeX2Xml
 	* @param $char The operator to parse.
 	*/
 
-	private function _parseOp(&$expr, &$char)
-	{
+ private function _parseOp(string &$expr, string &$char): void
+ {
 		$this->_setTag('mo', $char, ($char == '(' || $char == ')') ? array('stretchy' => 'false') : array());
 		$this->_upExpr($expr);
 		$this->_parseExpr($expr);
@@ -622,8 +624,8 @@ class LaTeX2Xml
 	* @param $char The indicator to parse.
 	*/
 
-	private function _parseInd(&$expr, &$char)
-	{
+ private function _parseInd(string &$expr, string &$char): void
+ {
 		$this->_setTag('mi', $char);
 		$this->_upExpr($expr);
 		$this->_parseExpr($expr);
@@ -636,8 +638,8 @@ class LaTeX2Xml
 	* @param $nextchar
 	*/
 
-	private function _parseSubSup(&$expr, &$char, $nextchar)
-	{
+ private function _parseSubSup(string &$expr, string &$char, string $nextchar): void
+ {
 
 		list($str, $len) = $this->_parseNSS($nextchar, $expr);
 
@@ -733,8 +735,8 @@ class LaTeX2Xml
 		// Spin <3 Aura
 	}
 
-	private function _parseNSS(&$chr, &$expr)
-	{
+ private function _parseNSS(string &$chr, string &$expr): array
+ {
 		if($chr == '{')
 		{
 			$b = 1;
@@ -780,8 +782,8 @@ class LaTeX2Xml
 	* @param $expr
 	*/
 
-	private function _parseRow(&$expr)
-	{ 
+ private function _parseRow(string &$expr): void
+ { 
 	
 		$this->_closeTag();
 		$this->_closeTag();
@@ -798,8 +800,8 @@ class LaTeX2Xml
 	* @param $expr
 	*/
 
-	private function _parseCol(&$expr)
-	{
+ private function _parseCol(string &$expr): void
+ {
 
 		$this->_closeTag();
 
@@ -814,11 +816,11 @@ class LaTeX2Xml
 	* @param $expr
 	*/
 
-	private function _skip(&$expr)
-	{
-		$this->_upExpr($expr);
-		$this->_parseExpr($expr);	
-	}
+ private function _skip(string &$expr): void
+ {
+     $this->_upExpr($expr);
+     $this->_parseExpr($expr); 
+ }
 
 
 	/**
@@ -826,14 +828,14 @@ class LaTeX2Xml
 	*	It creates the xhtml dom node and return the xml output.
 	*/
 
-	public function parse()
-	{
+ public function parse(): string
+ {
 
 
 		$this->dom->appendChild($this->math);
 
-		return $this->dom->saveXML();
-	}
+        return (string)$this->dom->saveXML();
+    }
 
 }
 

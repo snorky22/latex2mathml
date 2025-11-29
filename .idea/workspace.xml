@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="83c355d6-b6b9-4b04-8e37-1f3aeddc4a49" name="Changes" comment="Problem with symbol parsing">
+    <list default="true" id="83c355d6-b6b9-4b04-8e37-1f3aeddc4a49" name="Changes" comment="Initial Junie php 8 fix">
+      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/example1.php" beforeDir="false" afterPath="$PROJECT_DIR$/example/example1.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/files/commands.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/files/commands.class.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/files/config.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/files/config.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/files/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/files/config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/files/latex2mathml.php" beforeDir="false" afterPath="$PROJECT_DIR$/files/latex2mathml.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/files/latex2xml.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/files/latex2xml.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/files/latex2xml.php" beforeDir="false" afterPath="$PROJECT_DIR$/files/latex2xml.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +89,8 @@
       <updated>1763976054834</updated>
       <workItem from="1763976056016" duration="115000" />
       <workItem from="1763976178768" duration="7534000" />
-      <workItem from="1764407759214" duration="2397000" />
+      <workItem from="1764407759214" duration="3349000" />
+      <workItem from="1764411141615" duration="1474000" />
     </task>
     <task id="LOCAL-00001" summary="Initial fixes">
       <option name="closed" value="true" />
@@ -132,7 +132,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763986136110</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Initial Junie php 8 fix">
+      <option name="closed" value="true" />
+      <created>1764410416036</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1764410416036</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -144,14 +152,15 @@
     <MESSAGE value="commands wip" />
     <MESSAGE value="fix commands syntax" />
     <MESSAGE value="Problem with symbol parsing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Problem with symbol parsing" />
+    <MESSAGE value="Initial Junie php 8 fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial Junie php 8 fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/files/latex2xml.class.php</url>
-          <line>113</line>
+          <line>115</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
@@ -161,23 +170,23 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/files/latex2xml.class.php</url>
-          <line>88</line>
+          <line>90</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/files/latex2xml.class.php</url>
-          <line>42</line>
+          <line>44</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/files/latex2xml.class.php</url>
-          <line>48</line>
+          <line>50</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/example/example1.php</url>
-          <line>6</line>
-          <option name="timeStamp" value="13" />
+          <line>18</line>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
