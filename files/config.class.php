@@ -1,4 +1,5 @@
 <?php
+namespace Latex2MathML;
 
 /**
 * This class is used to set operators and symbols

@@ -1,4 +1,5 @@
 <?php
+namespace Latex2MathML;
 
 class commands
 {
@@ -30,7 +31,6 @@ class commands
 	public function newCommand($name, $num, $def)
 	{
 		$this->commands[$name] = $num.$def;
-		$this->config->element[$name]['args'] = $num;
 	}
 
 	/**
@@ -41,7 +41,11 @@ class commands
 	
 	public function getCommand(&$expr)
 	{
-		$p = strpos($expr, '{')-1;
+		$pos = strpos($expr, '{');
+		if ($pos === false) {
+			return substr($expr, 1); // fallback: take the rest of the string
+		}
+		$p = $pos - 1;
 		return substr($expr, 1, $p);
 	}
 
@@ -72,7 +76,9 @@ class commands
 		elseif($pcmd==0)
 		{
 			$off = strpos($expr, ' ');
+			if ($off === false) { $off = strlen($expr); }
 			$offcom = strpos($expr, '{');
+			if ($offcom === false) { $offcom = strlen($expr); }
 
 			if($offcom != 0 && $offcom < $off) $off = $offcom;
 
@@ -81,7 +87,7 @@ class commands
 			$expr = substr($expr, $off);
 			return array( $expr);
 		}
-		else return;
+		else return array($expr);
 
 
 		$args = array();
@@ -168,8 +174,10 @@ class commands
 
 	private function _parseCmd($expr)
 	{
+		// Guard empty strings
+		if ($expr === '' || $expr === null) return;
 		// Get the first and second char.
-		$char = $expr[0];
+		$char = (strlen($expr) > 0) ? $expr[0] : '';
 		$nextchar = substr($expr, 1, 1);
 
 		if(strlen($char)>0)
@@ -196,6 +204,8 @@ class commands
 
 		$args = $this->_getArgs($command, $expr, 1);
 
+		// Ensure array to avoid count() on null in PHP 8
+		if (!is_array($args)) { $args = array($expr); }
 		$nArgs = count($args) - 1;
 
 		if($nArgs > 0 && isSet($this->commands['\\'.$command]))

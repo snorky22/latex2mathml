@@ -1,4 +1,6 @@
 <?php
+use Latex2MathML\config;
+use Latex2MathML\commands;
 
 $config = config::getInstance();
 

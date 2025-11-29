@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="83c355d6-b6b9-4b04-8e37-1f3aeddc4a49" name="Changes" comment="Problem with symbol parsing">
+      <change beforePath="$PROJECT_DIR$/example/example1.php" beforeDir="false" afterPath="$PROJECT_DIR$/example/example1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/commands.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/files/commands.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/config.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/files/config.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/files/config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/latex2mathml.php" beforeDir="false" afterPath="$PROJECT_DIR$/files/latex2mathml.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/latex2xml.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/files/latex2xml.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/latex2xml.php" beforeDir="false" afterPath="$PROJECT_DIR$/files/latex2xml.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;snorky22&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/snorky22/latex2mathml.git&quot;,
+    &quot;accountId&quot;: &quot;77dfe3f9-2b4b-42c3-88a0-896367d17ea0&quot;
+  }
+}</component>
+  <component name="PhpDebugGeneral" listening_started="true" />
+  <component name="PhpServers">
+    <servers>
+      <server host="PhpStorm 2025.2.5" id="95eb69a1-b168-4a07-a065-5137aef9d20f" name="PhpStorm 2025.2.5" port="63342" />
+    </servers>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 8.3" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="35v27DUwbdvC0d7IfoulRbqABPn" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;PHP Script.commands.class.php.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore_missing_gitignore&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/francois/Dropbox/Documents/En cours/Essais/latex2mathml&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.webide.settings.project.settings.php&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-a71380e98a7c-JavaScript-PS-252.28238.9" />
+        <option value="bundled-php-predefined-a98d8de5180a-58f58c5035b3-com.jetbrains.php.sharedIndexes-PS-252.28238.9" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="83c355d6-b6b9-4b04-8e37-1f3aeddc4a49" name="Changes" comment="" />
+      <created>1763976054834</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1763976054834</updated>
+      <workItem from="1763976056016" duration="115000" />
+      <workItem from="1763976178768" duration="7534000" />
+      <workItem from="1764407759214" duration="2397000" />
+    </task>
+    <task id="LOCAL-00001" summary="Initial fixes">
+      <option name="closed" value="true" />
+      <created>1763977270244</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1763977270244</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Fix config syntax">
+      <option name="closed" value="true" />
+      <created>1763977464091</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1763977464091</updated>
+    </task>
+    <task id="LOCAL-00003" summary="commands wip">
+      <option name="closed" value="true" />
+      <created>1763978412047</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1763978412047</updated>
+    </task>
+    <task id="LOCAL-00004" summary="fix commands syntax">
+      <option name="closed" value="true" />
+      <created>1763979262229</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1763979262229</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Problem with symbol parsing">
+      <option name="closed" value="true" />
+      <created>1763986136110</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1763986136110</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial fixes" />
+    <MESSAGE value="Fix config syntax" />
+    <MESSAGE value="commands wip" />
+    <MESSAGE value="fix commands syntax" />
+    <MESSAGE value="Problem with symbol parsing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Problem with symbol parsing" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/files/latex2xml.class.php</url>
+          <line>113</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/files/commands.class.php</url>
+          <line>152</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/files/latex2xml.class.php</url>
+          <line>88</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/files/latex2xml.class.php</url>
+          <line>42</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/files/latex2xml.class.php</url>
+          <line>48</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/example/example1.php</url>
+          <line>6</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

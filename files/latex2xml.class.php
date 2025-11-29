@@ -1,4 +1,5 @@
 <?php
+namespace Latex2MathML;
 
 /**
 * @brief LaTeX2MathML parser
@@ -9,7 +10,7 @@
 class LaTeX2Xml
 {
 
-	
+
 	//!DOM variable
 	private $dom;
 
@@ -19,7 +20,9 @@ class LaTeX2Xml
 
 	private static $instance;
 
-	private $symbol;
+	private $symbol = array();
+	private $element = array();
+	private $operators = array();
 	private $symbol_replace;
 	private $prev_char = '';
 	private $lastTag;
@@ -43,9 +46,11 @@ class LaTeX2Xml
 		$this->operators = config::getInstance()->getOperators();
 
 		// Used to convert all elements into parsable entities
-		foreach($this->element as $k=>$v)
-			if(in_array('char', $v))
+		foreach($this->element as $k=>$v) {
+			if (is_array($v) && (isset($v['char']) || in_array('char', $v, true))) {
 				$this->symbol['\\'.$k] = '\\'.$k.'{}';
+			}
+		}
 
 		
 	}
@@ -69,7 +74,7 @@ class LaTeX2Xml
 
 	public function getSymbols()
 	{
-		return $this->symbol;
+		return (array)$this->symbol;
 	}
 
 	/**
@@ -127,11 +132,15 @@ class LaTeX2Xml
 	* @param $expr Expression to parse
 	*/
 
-	private function _parseExpr(&$expr)
-	{
-		// Get the first and second char.
-		$char = $expr[0];
-		$nextchar = substr($expr, 1, 1);
+ private function _parseExpr(&$expr)
+ {
+     // Guard empty expression
+     if ($expr === '' || $expr === null) {
+         return;
+     }
+     // Get the first and second char safely.
+     $char = (strlen($expr) > 0) ? $expr[0] : '';
+     $nextchar = substr($expr, 1, 1);
 
 		if(strlen($char)>0)
 		{
@@ -162,20 +171,20 @@ class LaTeX2Xml
 
 				$this->_parseCol($expr);
 
-			elseif($char == " ")
+   elseif($char == " ")
 
-				$this->_skip($expr);
+                $this->_skip($expr);
 
 			elseif($char == '\\' && preg_match('/[a-zA-Z,;:\!\.\|\#]{1}/U', $nextchar))
 			{
 
-				$command = commands::getInstance()->getCommand($expr);	
-				$this->_parseFormula($command, $expr);
+    $command = commands::getInstance()->getCommand($expr);
+    $this->_parseFormula($command, $expr);
 
 			}
-			else
-				$this->_parseInd($expr, $char);
-		}
+            else
+                $this->_parseInd($expr, $char);
+    }
 	}
 
 
@@ -246,11 +255,11 @@ class LaTeX2Xml
 	* @param $expr
 	*/
 
-	private function _upExpr(&$expr, $l=1)
-	{
-		$this->prev_char = $expr[0];
-		$expr = substr($expr, $l);
-	}
+ private function _upExpr(&$expr, $l=1)
+ {
+ 		$this->prev_char = (strlen($expr) > 0) ? $expr[0] : '';
+ 		$expr = substr((string)$expr, $l);
+ }
 
 	/**
 	* Open a new mathml tag (which needs to be closed).
@@ -427,9 +436,10 @@ class LaTeX2Xml
 					$this->_parseExpr($args[0]);
 				}
 
-					$expr = $this->_upExpr($expr);
-					$this->prev_char = $expr[0];
-					$this->_parseExpr($expr);
+     // Advance expression safely
+     $this->_upExpr($expr);
+     $this->prev_char = (strlen($expr) > 0) ? $expr[0] : '';
+     $this->_parseExpr($expr);
 			break;
 		}
 
@@ -578,15 +588,15 @@ class LaTeX2Xml
 	* @param $char The number to parse.
 	*/
 
-	private function _parsenb(&$expr, &$char)
-	{
-		$this->_upExpr($expr);
+ private function _parsenb(&$expr, &$char)
+ {
+ 		$this->_upExpr($expr);
 
-		while(is_numeric($expr[0]))
-		{
-			$char.=$expr[0];
-			$this->_upExpr($expr);
-		}
+ 		while(strlen($expr) > 0 && is_numeric($expr[0]))
+ 		{
+ 			$char.=$expr[0];
+ 			$this->_upExpr($expr);
+ 		}
 
 		$this->_setTag('mn', $char);
 		$this->_parseExpr($expr);
@@ -635,29 +645,32 @@ class LaTeX2Xml
 
 			$row = $this->dom->createElement('mrow');
 
-			if(($expr[0] == '^' || $expr[0] == '_') && $expr[0] != $char)
-			{
+   if((strlen($expr) > 0) && (($expr[0] == '^' || $expr[0] == '_') && $expr[0] != $char))
+   {
 				$c = count($this->tag)-1;
 
-				if(!$this->tag[$c]->lastChild)
-				{
-					$this->_setTag('mspace', '', array('width' => '0.167em'));
-				}
+ 			if(!isset($this->tag[$c]->lastChild) || !$this->tag[$c]->lastChild)
+ 			{
+ 				$this->_setTag('mspace', '', array('width' => '0.167em'));
+ 			}
 
-				$s = $expr[0];
-				$c = count($this->tag)-1;
-				$sup = $this->dom->createElement(($this->tag[$c]->lastChild->nodeValue =='∑')? 'munderover':'msubsup');
+    $s = (strlen($expr) > 0) ? $expr[0] : '';
+ 			$c = count($this->tag)-1;
+ 			$isSum = (isset($this->tag[$c]->lastChild) && $this->tag[$c]->lastChild && $this->tag[$c]->lastChild->nodeValue =='∑');
+ 			$sup = $this->dom->createElement($isSum ? 'munderover' : 'msubsup');
 
-				$sup->appendChild($this->tag[$c]->lastChild);
+ 			if (isset($this->tag[$c]->lastChild) && $this->tag[$c]->lastChild) {
+ 				$sup->appendChild($this->tag[$c]->lastChild);
+ 			}
 					$this->_openTag('mrow');
 							$this->_parseExpr($str);
 					$this->_closeTag();
 
-				$n = $this->tag[$c]->lastChild;
-				$sup->appendChild($n);
+ 			$n = isset($this->tag[$c]->lastChild) ? $this->tag[$c]->lastChild : null;
+ 			if ($n) { $sup->appendChild($n); }
 
-				$str = $expr[1];
-				$len = 1;
+    $str = isset($expr[1]) ? $expr[1] : '';
+    $len = 1;
 
 				list($str, $len) = $this->_parseNSS($str, $expr);
 
@@ -667,10 +680,15 @@ class LaTeX2Xml
 
 				$this->_upExpr($expr, $len+1);
 
-				if($s == '_')
-					$sup->insertBefore($this->tag[$c]->lastChild, $n);
-				else
-					$sup->appendChild($this->tag[$c]->lastChild);
+ 			if($s == '_') {
+ 				if (isset($this->tag[$c]->lastChild) && $this->tag[$c]->lastChild && $n) {
+ 					$sup->insertBefore($this->tag[$c]->lastChild, $n);
+ 				}
+ 			} else {
+ 				if (isset($this->tag[$c]->lastChild) && $this->tag[$c]->lastChild) {
+ 					$sup->appendChild($this->tag[$c]->lastChild);
+ 				}
+ 			}
 
 				array_push($this->tag,$sup);
 				$this->_closeTag();
@@ -687,20 +705,25 @@ class LaTeX2Xml
 				}
 				else
 				{
-					$exp = ($this->tag[$c]->lastChild->nodeValue == '∑') ? 'munder':'msub';
+ 				$isSum = (isset($this->tag[$c]->lastChild) && $this->tag[$c]->lastChild && $this->tag[$c]->lastChild->nodeValue == '∑');
+ 				$exp = $isSum ? 'munder' : 'msub';
 				}
 
 				$sup = $this->dom->createElement($exp);
 
-				$row = $this->dom->createElement('mrow');
-				$row->appendChild($this->tag[$c]->lastChild);
+ 			$row = $this->dom->createElement('mrow');
+ 			if (isset($this->tag[$c]->lastChild) && $this->tag[$c]->lastChild) {
+ 				$row->appendChild($this->tag[$c]->lastChild);
+ 			}
 
 				$sup->appendChild($row);
 				
 				$this->_openTag('mrow');
 					$this->_parseExpr($str);
 				$this->_closeTag();
-				$sup->appendChild($this->tag[$c]->lastChild);
+ 			if (isset($this->tag[$c]->lastChild) && $this->tag[$c]->lastChild) {
+ 				$sup->appendChild($this->tag[$c]->lastChild);
+ 			}
 			
 				array_push($this->tag,$sup);
 				$this->_closeTag();
@@ -715,23 +738,35 @@ class LaTeX2Xml
 		if($chr == '{')
 		{
 			$b = 1;
-			for($i=2; $b!=0; $i++)
+			$lenExpr = strlen($expr);
+			for($i=2; $b!=0 && $i < $lenExpr; $i++)
 			{
-				if($expr[$i] == '}')		$b--;
-				elseif($expr[$i] == '{') 	$b++;
+				$ch = isset($expr[$i]) ? $expr[$i] : '';
+				if($ch == '}')		$b--;
+				elseif($ch == '{') 	$b++;
 			}
-			$str = substr($expr, 2, $i-3);
-			$len = $i-1;
+			if ($b != 0) {
+				$str = '';
+				$len = min($i, $lenExpr);
+			} else {
+				$str = substr($expr, 2, max(0, $i-3));
+				$len = $i-1;
+			}
 		}
 		else
 		{
-			$str = $chr;
+			$str = (string)$chr;
 			$len = 1;
-			if($str[0] == "\\")
+			if(strlen($str) > 0 && $str[0] == "\\")
 			{
 				$p = strpos($expr, '}');
-				$str = substr($expr, 1, $p+1);
-				$len = $p+1;
+				if ($p === false) {
+					$str = substr($expr, 1, 1);
+					$len = 1;
+				} else {
+					$str = substr($expr, 1, $p+1);
+					$len = $p+1;
+				}
 			}	
 		}
 	
