@@ -1,0 +1,19 @@
+{
+  "name": "latex2mathml/latex2mathml",
+  "description": "Convert LaTeX math to MathML in PHP.",
+  "type": "library",
+  "license": "BSD-3-Clause",
+  "authors": [
+    { "name": "Jeremy Oden" }
+  ],
+  "require": {
+    "php": ">=8.0"
+  },
+  "autoload": {
+    "classmap": [
+      "files/"
+    ]
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}
