@@ -52,7 +52,7 @@ echo $l2xml->parse();
 ## Examples
 
 - `example/example_simple.php` — minimal, debug-friendly example. You can pass input via CLI or `?latex=` query param.
-- `example/example1.php` — larger showcase with many expressions.
+- `example/example1.php` — larger showcase with many expressions. Seems currently broken.
 
 ## Project layout
 
