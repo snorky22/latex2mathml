@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="83c355d6-b6b9-4b04-8e37-1f3aeddc4a49" name="Changes" comment="Should be composer friendly. Update Readme">
+    <list default="true" id="83c355d6-b6b9-4b04-8e37-1f3aeddc4a49" name="Changes" comment="Update Readme+">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/example_simple.php" beforeDir="false" afterPath="$PROJECT_DIR$/example/example_simple.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/example1.php" beforeDir="false" afterPath="$PROJECT_DIR$/example/example1.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +86,7 @@
       <workItem from="1763976056016" duration="115000" />
       <workItem from="1763976178768" duration="7534000" />
       <workItem from="1764407759214" duration="3349000" />
-      <workItem from="1764411141615" duration="2626000" />
+      <workItem from="1764411141615" duration="4679000" />
     </task>
     <task id="LOCAL-00001" summary="Initial fixes">
       <option name="closed" value="true" />
@@ -153,7 +152,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764413204860</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Update Readme">
+      <option name="closed" value="true" />
+      <created>1764413786232</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1764413786232</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Update Readme+">
+      <option name="closed" value="true" />
+      <created>1764413998001</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1764413998001</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,7 +183,9 @@
     <MESSAGE value="Initial Junie php 8 fix" />
     <MESSAGE value="Add return types. New example." />
     <MESSAGE value="Should be composer friendly. Update Readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="Should be composer friendly. Update Readme" />
+    <MESSAGE value="Update Readme" />
+    <MESSAGE value="Update Readme+" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update Readme+" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -197,11 +214,6 @@
           <url>file://$PROJECT_DIR$/files/latex2xml.class.php</url>
           <line>50</line>
           <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/example/example1.php</url>
-          <line>18</line>
-          <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/example/example_simple.php</url>
