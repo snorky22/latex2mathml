@@ -7,7 +7,7 @@ Requires PHP 8.0 or higher.
 
 ## Links
 
-- Homepage: http://latex2mathml.freewebmaster.fr
+- Homepage: http://latex2mathml.freewebmaster.fr (link seems broken).
 - SourceForge: http://sourceforge.net/projects/latex2mathml/
 
 ## Installation
